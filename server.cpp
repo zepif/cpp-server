@@ -3,7 +3,9 @@
 
 int main() {
   using namespace http;
-  TcpServer server = TcpServer();
+
+  TcpServer server = TcpServer(8000);
+  server.startListen();
   std::cout << "goyda";
 
   return 0;

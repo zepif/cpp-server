@@ -4,7 +4,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
-#ifdef _WIN32
+
+#ifdef __linux__
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#else
 #include <Winsock2.h>
 #endif
 
@@ -12,14 +17,15 @@ namespace http {
 
 class TcpServer {
 public:
-  TcpServer();
+  TcpServer(int port);
   ~TcpServer();
+  void startListen();
 
 private:
   int m_port;
   int m_socket;
   int m_new_socket;
-  long long m_incomingMessage;
+  long m_incomingMessage;
   struct sockaddr_in m_socketAddress;
   int m_socketAddress_len;
   std::string m_serverMessage;
