@@ -6,7 +6,6 @@ int main() {
 
   TcpServer server = TcpServer("127.0.0.1", 8000);
   server.startListen();
-  std::cout << "goyda";
 
   return 0;
 }
